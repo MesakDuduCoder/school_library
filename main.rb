@@ -14,12 +14,23 @@ capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
 puts capitalized_trimmed_person.correct_name
 
 classroom = Classroom.new('class-10')
+classroom2 = Classroom.new('class-11')
 
-Student.new(18, classroom, name: 'Mike')
-Student.new(20, classroom, name: 'Julian')
+student1 = Student.new(18, classroom, name: 'Mike')
+student2 = Student.new(20, classroom, name: 'Julian')
 
-# students will be actomatically added to classroom
+# students will be actomatically added to classroom when I create them
 classroom.students.each do |student|
+  puts "#{student.name}, Age: #{student.age}, classroom: #{student.classroom.label}"
+end
+
+classroom2.add_student(student1)
+student2.classroom = classroom2
+
+# When I add student to new classroom it will update students classroom
+# And when I change student's classroom it will update classroom's students
+
+classroom2.students.each do |student|
   puts "#{student.name}, Age: #{student.age}, classroom: #{student.classroom.label}"
 end
 
