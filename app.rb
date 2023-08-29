@@ -28,29 +28,19 @@ class App
       puts 'There are no people'
     else
       @people.each_with_index do |person, i|
-        puts "Number: #{i + 1}, Name: #{person.name},age: #{person.age}, ID: #{person.id}"
+        puts "Number: #{i + 1}, Name: #{person.name}, age: #{person.age}, ID: #{person.id}"
       end
     end
   end
 
-  def create_person(name, age)
-    puts 'Create student or teacher?'
-    puts 'To create student input 1 for teacher input 2'
-    type = gets.chomp.to_i
-    if type == 1
-      puts 'Enter classroom'
-      class_level = gets.chomp
-      classroom = Classroom.new(class_level)
-      person = Student.new(age, classroom, name: name)
-      @people << person
-    elsif type == 2
-      puts 'Enter specialization'
-      specialization = gets.chomp
-      person = Teacher.new(age, specialization, name: name)
-      @people << person
-    else
-      puts 'Invalid input'
-    end
+  def create_student(age, name, has_parent_permission)
+    student = Student.new(age, name: name, parent_permission: has_parent_permission)
+    @people << student
+  end
+
+  def create_teacher(age, specialization, name)
+    teacher = Teacher.new(age, specialization, name: name)
+    @people << teacher
   end
 
   def create_book(title, author)
@@ -67,8 +57,12 @@ class App
       next unless person.id == person_id
 
       puts "Name: #{person.name}"
-      person.rentals.each do |rental|
-        puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
+      if person.rentals.empty?
+        puts 'Has no rentals'
+      else
+        person.rentals.each do |rental|
+          puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
+        end
       end
     end
   end

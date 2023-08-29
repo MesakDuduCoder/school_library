@@ -2,11 +2,23 @@ require_relative 'app'
 
 def create_person(app)
   puts "\n"
-  puts 'Enter person name:'
-  name = gets.chomp
+  puts 'Do you want to create a student (1) or teacher (2)? [Input number]:'
+  type = gets.chomp.to_i
   puts 'Enter person age:'
   age = gets.chomp.to_i
-  app.create_person(name, age)
+  puts 'Enter person name:'
+  name = gets.chomp
+  if type == 1
+    puts 'Has parent permission? [Yes/No]'
+    has_parent_permission = gets.chomp
+    app.create_student(age, name, has_parent_permission)
+  elsif type == 2
+    puts 'Enter specialization'
+    specialization = gets.chomp
+    app.create_teacher(age, specialization, name)
+  else
+    puts 'Invalid input'
+  end
 end
 
 def create_book(app)
