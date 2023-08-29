@@ -1,69 +1,75 @@
-require_relative 'person'
-require_relative 'trimmer_decorator'
-require_relative 'capitalize_decorator'
-require_relative 'student'
-require_relative 'classroom'
-require_relative 'book'
-require_relative 'rental'
+require_relative 'app'
 
-person = Person.new(22, name: 'maximilianus')
-puts person.correct_name
-capitalized_person = CapitalizeDecorator.new(person)
-puts capitalized_person.correct_name
-capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
-puts capitalized_trimmed_person.correct_name
-
-classroom = Classroom.new('class-10')
-classroom2 = Classroom.new('class-11')
-
-student1 = Student.new(18, classroom, name: 'Mike')
-student2 = Student.new(20, classroom, name: 'Julian')
-
-# students will be actomatically added to classroom when I create them
-classroom.students.each do |student|
-  puts "#{student.name}, Age: #{student.age}, classroom: #{student.classroom.label}"
+def create_person(app)
+  puts "\n"
+  puts 'Enter person name:'
+  name = gets.chomp
+  puts 'Enter person age:'
+  age = gets.chomp.to_i
+  app.create_person(name, age)
 end
 
-classroom2.add_student(student1)
-student2.classroom = classroom2
-
-# When I add student to new classroom it will update students classroom
-# And when I change student's classroom it will update classroom's students
-
-classroom2.students.each do |student|
-  puts "#{student.name}, Age: #{student.age}, classroom: #{student.classroom.label}"
+def create_book(app)
+  puts "\n"
+  puts 'Enter book title:'
+  title = gets.chomp
+  puts 'Enter book author:'
+  author = gets.chomp
+  app.create_book(title, author)
 end
 
-book1 = Book.new('Book 1', 'Author 1')
-book2 = Book.new('Book 2', 'Author 2')
-book3 = Book.new('Book 3', 'Author 3')
+def create_rental(app)
+  puts "\n"
+  puts 'Enter rental date:'
+  date = gets.chomp
+  app.list_books
+  puts 'Enter book number:'
+  book = gets.chomp.to_i
+  app.list_people
+  puts 'Enter person number:'
+  person = gets.chomp.to_i
+  app.create_rental(date, app.books[book - 1], app.people[person - 1])
+end
 
-person1 = Person.new(12, name: 'Alice')
-person2 = Person.new(11, name: 'Jess')
+def list_rentals(app)
+  puts "\n"
+  app.list_people
+  puts 'Enter person id:'
+  id = gets.chomp.to_i
+  app.list_rentals(id)
+end
 
-Rental.new('2023-08-04', book1, person1)
-Rental.new('2023-08-05', book2, person1)
-Rental.new('2023-08-05', book3, person1)
-Rental.new('2023-08-05', book3, person2)
+def list_options
+  puts "\n"
+  puts 'Enter number to pick an option:'
+  puts '1. List all books'
+  puts '2. List all people'
+  puts '3. Create a person'
+  puts '4. Create a book'
+  puts '5. Create a rental'
+  puts '6. List all rentals for a given person id'
+  puts '7. End'
+end
 
-# When new rental is created, it will be automatically added to book and person
-puts "#{person1.name}'s rentals:"
-person1.rentals.each do |rental|
-  puts "#{rental.book.title} - #{rental.date}"
+def main
+  app = App.new
+  loop do
+    list_options
+    option = gets.chomp.to_i
+    options = {
+      1 => -> { app.list_books },
+      2 => -> { app.list_people },
+      3 => -> { create_person(app) },
+      4 => -> { create_book(app) },
+      5 => -> { create_rental(app) },
+      6 => -> { list_rentals(app) },
+      7 => -> { exit }
+    }
+    case option
+    when 1, 2, 3, 4, 5, 6, 7
+      options[option].call
+    end
+  end
 end
-puts "#{person2.name}'s rentals:"
-person2.rentals.each do |rental|
-  puts "#{rental.book.title} - #{rental.date}"
-end
-puts "\n#{book1.title}'s rentals:"
-book1.rentals.each do |rental|
-  puts "#{rental.person.name} - #{rental.date}"
-end
-puts "\n#{book2.title}'s rentals:"
-book2.rentals.each do |rental|
-  puts "#{rental.person.name} - #{rental.date}"
-end
-puts "\n#{book3.title}'s rentals:"
-book3.rentals.each do |rental|
-  puts "#{rental.person.name} - #{rental.date}"
-end
+
+main
