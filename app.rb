@@ -1,6 +1,8 @@
 require_relative 'book'
-require_relative 'person'
+require_relative 'student'
 require_relative 'rental'
+require_relative 'teacher'
+require_relative 'classroom'
 
 class App
   attr_accessor :rentals, :books, :people
@@ -32,8 +34,23 @@ class App
   end
 
   def create_person(name, age)
-    person = Person.new(age, name: name)
-    @people << person
+    puts 'Create student or teacher?'
+    puts 'To create student input 1 for teacher input 2'
+    type = gets.chomp.to_i
+    if type == 1
+      puts 'Enter classroom'
+      class_level = gets.chomp
+      classroom = Classroom.new(class_level)
+      person = Student.new(age, classroom, name: name)
+      @people << person
+    elsif type == 2
+      puts 'Enter specialization'
+      specialization = gets.chomp
+      person = Teacher.new(age, specialization, name: name)
+      @people << person
+    else
+      puts 'Invalid input'
+    end
   end
 
   def create_book(title, author)
