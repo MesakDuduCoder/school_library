@@ -3,6 +3,7 @@ require_relative 'student'
 require_relative 'rental'
 require_relative 'teacher'
 require_relative 'classroom'
+require 'pry'
 
 class App
   attr_accessor :rentals, :books, :people
@@ -35,6 +36,7 @@ class App
 
   def create_student(age, name, has_parent_permission)
     student = Student.new(age, name: name, parent_permission: has_parent_permission)
+    binding.pry
     @people << student
   end
 

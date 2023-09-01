@@ -1,5 +1,7 @@
 require_relative 'app'
+require 'pry'
 
+# Bug is on this method
 def create_person(app)
   puts "\n"
   puts 'Do you want to create a student (1) or teacher (2)? [Input number]:'
@@ -10,8 +12,8 @@ def create_person(app)
   name = gets.chomp
   if type == 1
     puts 'Has parent permission? [Yes/No]'
-    has_parent_permission = gets.chomp
     app.create_student(age, name, has_parent_permission)
+    
   elsif type == 2
     puts 'Enter specialization'
     specialization = gets.chomp
