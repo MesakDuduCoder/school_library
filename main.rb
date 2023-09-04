@@ -2,7 +2,7 @@ require_relative 'app'
 
 module Main
 
-def create_person(app)
+def self.create_person(app)
   puts "\n"
   puts 'Do you want to create a student (1) or teacher (2)? [Input number]:'
   type = gets.chomp.to_i
@@ -23,7 +23,7 @@ def create_person(app)
   end
 end
 
-def create_book(app)
+def self.create_book(app)
   puts "\n"
   puts 'Enter book title:'
   title = gets.chomp
@@ -32,7 +32,7 @@ def create_book(app)
   app.create_book(title, author)
 end
 
-def create_rental(app)
+def self.create_rental(app)
   puts "\n"
   puts 'Enter rental date:'
   date = gets.chomp
@@ -45,7 +45,7 @@ def create_rental(app)
   app.create_rental(date, app.books[book - 1], app.people[person - 1])
 end
 
-def list_rentals(app)
+def self.list_rentals(app)
   puts "\n"
   app.list_people
   puts 'Enter person id:'
@@ -53,7 +53,7 @@ def list_rentals(app)
   app.list_rentals(id)
 end
 
-def list_options
+def self.list_options
   puts "\n"
   puts 'Enter number to pick an option:'
   puts '1. List all books'
@@ -65,7 +65,7 @@ def list_options
   puts '7. End'
 end
 
-def main
+def self.main
   app = App.new
   loop do
     list_options
