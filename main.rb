@@ -1,5 +1,7 @@
 require_relative 'app'
 
+module Main
+
 def create_person(app)
   puts "\n"
   puts 'Do you want to create a student (1) or teacher (2)? [Input number]:'
@@ -84,4 +86,6 @@ def main
   end
 end
 
-main
+end
+
+Main.main
