@@ -5,6 +5,7 @@ require_relative 'teacher'
 require_relative 'classroom'
 require_relative 'book_manager'
 require_relative 'rental_manager'
+require_relative 'people_manager'
 
 class App
   attr_accessor :rentals, :books, :people
@@ -20,23 +21,17 @@ class App
   end
 
   def list_people
-    if @people.empty?
-      puts 'There are no people'
-    else
-      @people.each_with_index do |person, i|
-        puts "Number: #{i + 1}, Name: #{person.name}, age: #{person.age}, ID: #{person.id}"
-      end
-    end
+    PeopleManager.list_people(@people)
   end
 
   def create_student(age, name, has_parent_permission)
-    student = Student.new(age, name: name, parent_permission: has_parent_permission)
-    @people << student
+    student = PeopleManager.create_student(@people, age, name, has_parent_permission)
+    puts "Student #{student.name} created with ID #{student.id}."
   end
 
   def create_teacher(age, specialization, name)
-    teacher = Teacher.new(age, specialization, name: name)
-    @people << teacher
+    teacher = PeopleManager.create_teacher(@people, age, specialization, name)
+    puts "Teacher #{teacher.name} created with ID #{teacher.id}."
   end
 
   def create_book(title, author)
@@ -49,17 +44,6 @@ class App
   end
 
   def list_rentals(person_id)
-    @people.each do |person|
-      next unless person.id == person_id
-
-      puts "Name: #{person.name}"
-      if person.rentals.empty?
-        puts 'Has no rentals'
-      else
-        person.rentals.each do |rental|
-          puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}"
-        end
-      end
-    end
+    PeopleManager.list_rentals(@people, person_id)
   end
 end
