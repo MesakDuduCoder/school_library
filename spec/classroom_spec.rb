@@ -14,9 +14,9 @@ describe Classroom do
 
   context 'Test add_student method' do
     it 'Should return an array of added students' do
-      student = Student.new(17, 'Rose', false)
+      student = Student.new(17, name:'Rose', parent_permission:false)
       @classroom.add_student(student)
-      expect(@classroom.student).to eq([student])
+      expect(@classroom.students).to eq([student])
     end
   end
 end
