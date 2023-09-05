@@ -3,5 +3,10 @@
     "date": "123",
     "book": 0,
     "person": 0
+  },
+  {
+    "date": "5 sept",
+    "book": 5,
+    "person": 0
   }
 ]
