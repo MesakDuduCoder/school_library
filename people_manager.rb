@@ -2,30 +2,30 @@ require_relative 'student'
 require_relative 'teacher'
 
 module PeopleManager
-  def self.create_student(people, age, name, has_parent_permission)
+  def create_student(age, name, has_parent_permission)
     student = Student.new(age, name: name, parent_permission: has_parent_permission)
-    people << student
-    student
+    @people << student
+    save_people_to_file(@people)
   end
 
-  def self.create_teacher(people, age, specialization, name)
+  def create_teacher(age, specialization, name)
     teacher = Teacher.new(age, specialization, name: name)
-    people << teacher
-    teacher
+    @people << teacher
+    save_people_to_file(@people)
   end
 
-  def self.list_people(people)
-    if people.empty?
+  def list_people
+    if @people.empty?
       puts 'There are no people'
     else
-      people.each_with_index do |person, i|
+      @people.each_with_index do |person, i|
         puts "Number: #{i + 1}, Name: #{person.name}, age: #{person.age}, ID: #{person.id}"
       end
     end
   end
 
-  def self.list_rentals(people, person_id)
-    person = people.find { |p| p.id == person_id }
+  def list_rentals(person_id)
+    person = @people.find { |p| p.id == person_id }
     if person
       puts "Name: #{person.name}"
       if person.rentals.empty?
@@ -38,5 +38,9 @@ module PeopleManager
     else
       puts 'Person not found'
     end
+  end
+
+  def save_people_to_file(people)
+    @app_data.save_people(people)
   end
 end
