@@ -2,7 +2,7 @@ require_relative '../teacher'
 
 describe Teacher do
   before :each do
-    @teacher = Teacher.new(30, 'Chemistry', name:'Mike')
+    @teacher = Teacher.new(30, 'Chemistry', name: 'Mike')
   end
 
   context 'testing the teacher variables and methods' do
@@ -22,5 +22,4 @@ describe Teacher do
       expect(@teacher.can_use_services?).to eq(true)
     end
   end
-
 end

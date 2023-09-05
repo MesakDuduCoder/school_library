@@ -22,10 +22,10 @@ describe Book do
   describe 'check add_rental method' do
     it 'returns the accurate rental' do
       rental = {
-            date: '10/02/2023',
-            book: @book,
-            person: 'Person 1',
-        }
+        date: '10/02/2023',
+        book: @book,
+        person: 'Person 1'
+      }
       expect(@book.add_rental(rental)).to eq([rental])
     end
   end
