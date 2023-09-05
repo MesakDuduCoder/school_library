@@ -1,4 +1,6 @@
 require_relative '../book'
+require_relative '../rental'
+require_relative '../person'
 
 describe Book do
   before :each do
@@ -14,6 +16,17 @@ describe Book do
   describe 'check author' do
     it 'returns the accurate author -> Tolkien' do
       expect(@book.author).to eql 'Tolkien'
+    end
+  end
+
+  describe 'check add_rental method' do
+    it 'returns the accurate rental' do
+      rental = {
+            date: '10/02/2023',
+            book: @book,
+            person: 'Person 1',
+        }
+      expect(@book.add_rental(rental)).to eq([rental])
     end
   end
 end
