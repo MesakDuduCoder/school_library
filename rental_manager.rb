@@ -7,5 +7,5 @@ module RentalManager
 
   def save_rental_to_file(rentals)
     @app_data.save_rentals(@books, @people, rentals)
-  end 
+  end
 end

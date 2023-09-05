@@ -1,53 +1,67 @@
 {
-    "People": [
-      {
-        "type": "Teacher",
-        "age": "Unknown",
-        "name": "Doc Ock",
-        "specialization": "Scientist",
-        "id": 220
-      },
-      {
-        "type": "Student",
-        "age": 23,
-        "name": "Peter Parker",
-        "parent_permission": true,
-        "id": 419
-      },
-      {
-        "type": "Student",
-        "age": 28,
-        "name": "Green Goblin",
-        "parent_permission": true,
-        "id": 786
-      },
-      {
-        "type": "Student",
-        "age": 35,
-        "name": "Kratos",
-        "parent_permission": true,
-        "id": 170
-      },
-      {
-        "type": "Teacher",
-        "age": 1945,
-        "name": "Zeus",
-        "specialization": "Lord of Thunder",	
-        "id": 1002
-      },
-      {
-        "type": "Student",
-        "age": 0,
-        "name": "Demo Student 1",
-        "parent_permission": true,
-        "id": 645
-      },
-      {
-        "type": "Student",
-        "age": 19,
-        "name": "Haaland",
-        "parent_permission": true,
-        "id": 669
-      }
-    ]
-  }
+  "People": [
+    {
+      "type": "Teacher",
+      "age": 0,
+      "name": "Doc Ock",
+      "id": 110,
+      "specialization": "Scientist"
+    },
+    {
+      "type": "Student",
+      "age": 23,
+      "name": "Peter Parker",
+      "id": 170,
+      "parent_permission": true
+    },
+    {
+      "type": "Student",
+      "age": 28,
+      "name": "Green Goblin",
+      "id": 313,
+      "parent_permission": true
+    },
+    {
+      "type": "Student",
+      "age": 35,
+      "name": "Kratos",
+      "id": 800,
+      "parent_permission": true
+    },
+    {
+      "type": "Teacher",
+      "age": 1945,
+      "name": "Zeus",
+      "id": 592,
+      "specialization": "Lord of Thunder"
+    },
+    {
+      "type": "Student",
+      "age": 0,
+      "name": "Demo Student 1",
+      "id": 89,
+      "parent_permission": true
+    },
+    {
+      "type": "Student",
+      "age": 19,
+      "name": "Haaland",
+      "id": 184,
+      "parent_permission": true
+    },
+    {
+      "type": "Teacher",
+      "age": 45,
+      "name": "Rty",
+      "id": 144,
+      "specialization": "Time"
+    },
+    {
+      "type": "Student",
+      "age": 17,
+      "name": "Rose",
+      "id": 963,
+      "parent_permission": "No"
+    }
+  ]
+}
