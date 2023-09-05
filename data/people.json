@@ -1,0 +1,53 @@
+{
+    "People": [
+      {
+        "type": "Teacher",
+        "age": "Unknown",
+        "name": "Doc Ock",
+        "specialization": "Scientist",
+        "id": 220
+      },
+      {
+        "type": "Student",
+        "age": 23,
+        "name": "Peter Parker",
+        "parent_permission": true,
+        "id": 419
+      },
+      {
+        "type": "Student",
+        "age": 28,
+        "name": "Green Goblin",
+        "parent_permission": true,
+        "id": 786
+      },
+      {
+        "type": "Student",
+        "age": 35,
+        "name": "Kratos",
+        "parent_permission": true,
+        "id": 170
+      },
+      {
+        "type": "Teacher",
+        "age": 1945,
+        "name": "Zeus",
+        "specialization": "Lord of Thunder",	
+        "id": 1002
+      },
+      {
+        "type": "Student",
+        "age": 0,
+        "name": "Demo Student 1",
+        "parent_permission": true,
+        "id": 645
+      },
+      {
+        "type": "Student",
+        "age": 19,
+        "name": "Haaland",
+        "parent_permission": true,
+        "id": 669
+      }
+    ]
+  }
